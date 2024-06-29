@@ -11,12 +11,12 @@ pipeline {
     }
     stage('Build Project') {
       steps { 
-        sh 'gradle build'
+        sh 'gradle build --stacktrace --info'
       }
     }
     stage('Run Tests') {
       steps {
-        sh 'gradle test'
+        sh 'gradle test --stacktrace --info'
       }
     }
     stage('Deploy to Heroku') {
@@ -25,7 +25,7 @@ pipeline {
             sh '''
             git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/stormy-taiga-76478.git || true
             git fetch heroku
-            git merge heroku/master || true
+            git pull heroku master || true
             git push heroku master
             '''
         }
