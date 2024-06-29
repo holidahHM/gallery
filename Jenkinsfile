@@ -4,11 +4,7 @@ pipeline {
     gradle "Gradle-6"
   }
   stages { 
-    stage('Clone Repository') {
-      steps { 
-        git 'https://github.com/holidahHM/gallery.git'
-      }
-    }
+    
     stage('Build Project') {
       steps { 
         dir('gallery') { // Navigate to the correct directory if necessary
