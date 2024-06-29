@@ -31,24 +31,6 @@ pipeline {
         sh 'gradle test --stacktrace --info'
       }
     }
-    stage('Deploy to Heroku') {
-      steps {
-        withCredentials([string(credentialsId: 'heroku-api-key', variable: 'HEROKU_API_KEY')]) {
-            sh '''
-            # Assuming heroku remote already exists
-            git fetch heroku
-            git checkout master
-            git merge heroku/master --allow-unrelated-histories || true
-            
-            if [ -f .git/MERGE_MSG ]; then
-              git add .
-              git commit -m "Resolved merge conflicts"
-            fi
-
-            git push heroku master
-            '''
-        }
-      }
-    } 
+   
   }
 }
