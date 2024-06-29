@@ -17,7 +17,7 @@ pipeline {
     }
     stage('Set Git Config') {
       steps {
-        sh 'git config --global user.email "holidahmwangi.com"'
+        sh 'git config --global user.email "holidahmwangi@gmail.com"'
         sh 'git config --global user.name "holidahHM"'
       }
     }
@@ -35,13 +35,13 @@ pipeline {
       steps {
         withCredentials([string(credentialsId: 'heroku-api-key', variable: 'HEROKU_API_KEY')]) {
             sh '''
-            git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/stormy-taiga-76478.git || true
+            git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/stormy-taiga-76478.git
             git fetch heroku
             git checkout master
             git merge heroku/master --allow-unrelated-histories || true
             
             if [ -f .git/MERGE_MSG ]; then
-              git add .gitignore Jenkinsfile build.gradle
+              git add .
               git commit -m "Resolved merge conflicts"
             fi
 
