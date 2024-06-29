@@ -83,5 +83,14 @@ pipeline {
         }
       }
     } 
+     stage('Deploy to Render') {
+      steps {
+        withCredentials([file(credentialsId: 'render-private-key', variable: 'RENDER_PRIVATE_KEY')]) {
+          sh '''
+          renderctl --file key.json --account-id your-account-id service update your-service-name --env-vars "NODE_ENV=production" --start-command "npm run serve"
+          '''
+        }
+      }
+    }
   }
 }
