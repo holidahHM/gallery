@@ -17,8 +17,8 @@ pipeline {
     }
     stage('Set Git Config') {
       steps {
-        sh 'git config --global user.email "jenkins@example.com"'
-        sh 'git config --global user.name "Jenkins CI"'
+        sh 'git config --global user.email "holidahmwangi.com"'
+        sh 'git config --global user.name "holidahHM"'
       }
     }
     stage('Build Project') {
