@@ -35,7 +35,7 @@ pipeline {
       steps {
         withCredentials([string(credentialsId: 'heroku-api-key', variable: 'HEROKU_API_KEY')]) {
             sh '''
-            git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/stormy-taiga-76478.git
+            # Assuming heroku remote already exists
             git fetch heroku
             git checkout master
             git merge heroku/master --allow-unrelated-histories || true
