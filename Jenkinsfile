@@ -17,8 +17,8 @@ pipeline {
     }
     stage('Set Git Config') {
       steps {
-        sh 'git config --global user.email "holidahmwangi@gmail.com"'
-        sh 'git config --global user.name "holidahHM"'
+        sh 'git config --global user.email "jenkins@example.com"'
+        sh 'git config --global user.name "Jenkins CI"'
       }
     }
     stage('Build Project') {
@@ -41,6 +41,7 @@ pipeline {
             git merge heroku/master --allow-unrelated-histories || true
             
             if [ -f .git/MERGE_MSG ]; then
+              git add .gitignore Jenkinsfile build.gradle
               git commit -m "Resolved merge conflicts"
             fi
 
