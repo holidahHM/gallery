@@ -56,7 +56,7 @@ pipeline {
   stages { 
     stage('Clone Repository') {
       steps { 
-        git 'https://github.com/holidahHM/java-todo.git'
+        git 'https://github.com/holidahHM/gallery.git'
       }
     }
     stage('Build Project') {
@@ -76,7 +76,7 @@ pipeline {
           if git remote | grep heroku; then
             git remote remove heroku
           fi
-          git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/gentle-forest-31701.gitgit remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/stormy-taiga-76478.git
+          git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/gentle-forest-31701.gitgit 
           git push heroku master
           '''
         }
