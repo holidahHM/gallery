@@ -59,9 +59,10 @@ pipeline {
         git 'https://github.com/holidahHM/gallery.git'
       }
     }
-    stage('Build Project') {
-      steps { 
-        sh 'gradle build'
+      stage('Build Project') {
+      steps {
+        sh 'npm install'
+        sh 'npm run build'  // Run your defined build script
       }
     }
     stage('Run Tests') {
