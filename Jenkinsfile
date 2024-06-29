@@ -25,7 +25,8 @@ pipeline {
             sh '''
             git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/stormy-taiga-76478.git || true
             git fetch heroku
-            git pull heroku master || true
+            git checkout master
+            git merge heroku/master
             git push heroku master
             '''
         }
