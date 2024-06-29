@@ -76,7 +76,7 @@ pipeline {
           if git remote | grep heroku; then
             git remote remove heroku
           fi
-          git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/gentle-forest-31701.gitgit 
+          git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/gentle-forest-31701.git
           git push heroku master
           '''
         }
