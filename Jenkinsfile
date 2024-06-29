@@ -3,6 +3,12 @@ pipeline {
   tools { 
     gradle "Gradle-6"
   }
+  environment {
+    GIT_AUTHOR_NAME = 'holidahHM'
+    GIT_AUTHOR_EMAIL = 'holidahmwangi@gmail.com"'
+    GIT_COMMITTER_NAME = 'holidahHM'
+    GIT_COMMITTER_EMAIL = 'holidahmwangi@gmail.com"'
+  }
   stages { 
     stage('Clone Repository') {
       steps { 
@@ -32,7 +38,12 @@ pipeline {
             git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/stormy-taiga-76478.git || true
             git fetch heroku
             git checkout master
-            git merge heroku/master --allow-unrelated-histories -m "Merging remote changes" || true
+            git merge heroku/master --allow-unrelated-histories || true
+            
+            if [ -f .git/MERGE_MSG ]; then
+              git commit -m "Resolved merge conflicts"
+            fi
+
             git push heroku master
             '''
         }
