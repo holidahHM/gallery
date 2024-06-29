@@ -31,7 +31,7 @@ pipeline {
         sh 'gradle test --stacktrace --info'
       }
     }
-   stage('Deploy to Heroku') {
+  stage('Deploy to Heroku') {
       steps {
         withCredentials([string(credentialsId: 'heroku-api-key', variable: 'HEROKU_API_KEY')]) {
             sh '''
@@ -51,6 +51,5 @@ pipeline {
         }
       }
     } 
-   
   }
 }
