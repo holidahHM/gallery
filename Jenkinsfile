@@ -48,13 +48,13 @@
 //   }
 // }
 
-pipeline { 
+pipeline {
   agent any
   tools { 
-    nodejs "NodeJS_14"  // Use the name you configured in Global Tool Configuration
+    nodejs "NodeJS_14"
     gradle "Gradle-6"
   }
-  stages { 
+  stages {
     stage('Clone Repository') {
       steps { 
         git 'https://github.com/holidahHM/gallery.git'
@@ -63,13 +63,10 @@ pipeline {
     stage('Build Project') {
       steps {
         sh 'gradle build'
-       //sh 'npm install'
-        //sh 'npm run build'  // Run your defined build script
       }
     }
     stage('Run Tests') {
       steps {
-        //sh 'gradle test'
         sh 'npm install mocha'
         sh 'npm test'
       }
@@ -86,12 +83,12 @@ pipeline {
           '''
         }
       }
-    } 
+    }
     stage('Deploy to Render') {
       steps {
         script {
-          def renderServiceName = 'gallery'  // Replace with your Render service name
-          def renderApiKey = 'rnd_lyN7KNxziPBAyFIM8omFIvEUMQ2Hrnd_CATdEZdbs8igG257NwuVIRaX3P0p'  // Replace with your Render API key
+          def renderServiceName = 'gallery'
+          def renderApiKey = 'rnd_lyN7KNxziPBAyFIM8omFIvEUMQ2Hrnd_CATdEZdbs8igG257NwuVIRaX3P0p'
 
           withCredentials([string(credentialsId: 'renderApiKey', variable: 'RENDER_API_KEY')]) {
             sh """
@@ -102,6 +99,24 @@ pipeline {
             """
           }
         }
+      }
+    }
+    stage('Notify on Successful Deploy') {
+      when {
+        allOf {
+          branch 'master'
+          buildingTag()
+          changeRequest()
+          not {
+            anyOf {
+              buildingTag()
+              changeRequest()
+            }
+          }
+        }
+      }
+      steps {
+        slackSend (color: '#36a64f', message: 'Deployment to production successful!', channel: '#general')
       }
     }
   }
