@@ -70,6 +70,7 @@ pipeline {
     stage('Run Tests') {
       steps {
         //sh 'gradle test'
+        sh 'npm install mocha'
         sh 'npm test'
       }
     }
