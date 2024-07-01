@@ -20,5 +20,10 @@
     "mongoose": "^5.9.16",
     "multer": "^1.4.2",
     "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+     "webpack": "^5.x.x",
+    "webpack-cli": "^4.x.x"
+   
   }
 }
