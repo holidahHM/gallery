@@ -91,7 +91,7 @@ pipeline {
           def renderServiceName = 'gallery'  // Replace with your Render service name
           def renderApiKey = 'rnd_lyN7KNxziPBAyFIM8omFIvEUMQ2Hrnd_CATdEZdbs8igG257NwuVIRaX3P0p'  // Replace with your Render API key
 
-          withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
+          withCredentials([string(credentialsId: 'renderApiKey', variable: 'RENDER_API_KEY')]) {
             sh """
             curl -X POST "https://api.render.com/v1/services/${renderServiceName}/deploys" \
             -H "Authorization: Bearer ${RENDER_API_KEY}" \
