@@ -69,7 +69,8 @@ pipeline {
     }
     stage('Run Tests') {
       steps {
-        sh 'gradle test'
+        //sh 'gradle test'
+        sh 'npm test'
       }
     }
     stage('Deploy to Heroku') {
