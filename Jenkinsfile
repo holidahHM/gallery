@@ -89,7 +89,7 @@ pipeline {
       steps {
         script {
           def renderServiceName = 'gallery'  // Replace with your Render service name
-          def renderApiKey = 'rnd_lyN7KNxziPBAyFIM8omFIvEUMQ2H'  // Replace with your Render API key
+          def renderApiKey = 'rnd_lyN7KNxziPBAyFIM8omFIvEUMQ2Hrnd_CATdEZdbs8igG257NwuVIRaX3P0p'  // Replace with your Render API key
 
           withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
             sh """
