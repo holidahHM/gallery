@@ -115,8 +115,14 @@ pipeline {
           }
         }
       }
-      steps {
-        slackSend (color: '#36a64f', message: 'Deployment to production successful!', channel: '##friday-week-2-ip-1')
+     steps {
+        script {
+          slackSend (
+            color: '#36a64f',
+            message: 'Deployment to production successful!',
+            channel: 'friday-week-2-ip-1',  // Replace with your Slack channel
+        }
+        }
       }
     }
   }
