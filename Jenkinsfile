@@ -51,6 +51,7 @@
 pipeline { 
   agent any
   tools { 
+    nodejs "NodeJS_14"  // Use the name you configured in Global Tool Configuration
     gradle "Gradle-6"
   }
   stages { 
@@ -59,7 +60,7 @@ pipeline {
         git 'https://github.com/holidahHM/gallery.git'
       }
     }
-      stage('Build Project') {
+    stage('Build Project') {
       steps {
         sh 'npm install'
         sh 'npm run build'  // Run your defined build script
@@ -83,6 +84,5 @@ pipeline {
         }
       }
     } 
-   
   }
 }
