@@ -116,7 +116,7 @@ pipeline {
         }
       }
       steps {
-        slackSend (color: '#36a64f', message: 'Deployment to production successful!', channel: '#general')
+        slackSend (color: '#36a64f', message: 'Deployment to production successful!', channel: '##friday-week-2-ip-1')
       }
     }
   }
