@@ -62,8 +62,9 @@ pipeline {
     }
     stage('Build Project') {
       steps {
-        sh 'npm install'
-        sh 'npm run build'  // Run your defined build script
+        sh 'gradle build'
+       //sh 'npm install'
+        //sh 'npm run build'  // Run your defined build script
       }
     }
     stage('Run Tests') {
