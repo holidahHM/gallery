@@ -117,10 +117,12 @@ pipeline {
       }
      steps {
         script {
-          slackSend (
-            color: '#36a64f',
-            message: 'Deployment to production successful!',
-            channel: 'friday-week-2-ip-1',  // Replace with your Slack channel
+          // slackSend (
+          //   color: '#36a64f',
+          //   message: 'Deployment to production successful!',
+          //   channel: 'friday-week-2-ip-1',  // Replace with your Slack channel
+          //   webhookUrl: 'https://hooks.slack.com/services/YOUR/WEBHOOK/URL'  // Replace with your webhook URL
+            slackSend (color: '#36a64f', message: 'Deployment to production successful!', channel: '#general')
         }
         }
       }
