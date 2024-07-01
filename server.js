@@ -39,6 +39,7 @@
 
 
 
+
  
 // const PORT = process.env.PORT || 5000;
 // app.listen(PORT,() =>{
@@ -57,7 +58,8 @@ let image = require('./routes/image');
 
 // MongoDB connection string from environment variable
 //const mongodb_url = process.env.MONGO_URI || 'mongodb://localhost:27017/darkroom';
-const mongodb_url = process.env.MONGO_URI || 'mongodb://mongodb_ip_address:27017/darkroom';
+//const mongodb_url = process.env.MONGO_URI || 'mongodb://mongodb_ip_address:27017/darkroom';,
+const mongodb_url = 'mongodb+srv://holliemwangi:H0llies@m@tmcluster.zbhbjtc.mongodb.net/darkroom?retryWrites=true&w=majority';
 
 
 // Connect to the database

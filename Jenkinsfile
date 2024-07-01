@@ -85,10 +85,22 @@ pipeline {
         }
       }
     } 
+    stage('Deploy to Render') {
+      steps {
+        script {
+          def renderServiceName = 'gallery'  // Replace with your Render service name
+          def renderApiKey = 'rnd_lyN7KNxziPBAyFIM8omFIvEUMQ2H'  // Replace with your Render API key
 
-
-
-
-    
+          withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
+            sh """
+            curl -X POST "https://api.render.com/v1/services/${renderServiceName}/deploys" \
+            -H "Authorization: Bearer ${RENDER_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": false}'
+            """
+          }
+        }
+      }
+    }
   }
 }
