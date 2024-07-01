@@ -94,7 +94,7 @@ pipeline {
           withCredentials([string(credentialsId: 'render-api-key', variable: 'RENDER_API_KEY')]) {
             sh """
             curl -X POST "https://api.render.com/v1/services/${renderServiceName}/deploys" \
-            -H "Authorization: Bearer ${RENDERAPIKEY}" \
+            -H "Authorization: Bearer ${RENDER_API_KEY}" \
             -H "Content-Type: application/json" \
             -d '{"clearCache": false}'
             """
