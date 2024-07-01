@@ -4,9 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node server.js",
-    "build": "webpack --config webpack.config.js"
+    "test": "mocha --exit"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +21,8 @@
     "uuid": "^8.1.0"
   },
   "devDependencies": {
-    "webpack": "^5.x.x",
-    "webpack-cli": "^4.x.x"
+    "chai": "^3.5.0",
+    "chai-http": "^1.0.0",
+    "mocha": "^8.1.1"
   }
 }
