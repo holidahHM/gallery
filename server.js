@@ -58,7 +58,6 @@ let index = require('./routes/index');
 let image = require('./routes/image');
 
 // Initializing the app
-const express = require('express');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
