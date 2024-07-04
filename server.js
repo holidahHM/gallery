@@ -58,6 +58,7 @@ let index = require('./routes/index');
 let image = require('./routes/image');
 
 // Initializing the app
+const express = require('express');
 const app = express();
 
 // connecting the database
@@ -92,9 +93,9 @@ app.use(express.json());
 app.use('/', index);
 app.use('/image', image);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT,() =>{
-    console.log(`Server is listening at http://localhost:${PORT}`)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 
