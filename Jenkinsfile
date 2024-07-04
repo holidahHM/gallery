@@ -25,7 +25,7 @@ pipeline {
 
         EMAIL_SUBJECT_FAILURE = "Status: 'FAILURE' -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'" 
 
-        EMAIL_RECEPIENT = 'holidahmwangi@gmail.com'
+        EMAIL_RECEPIENT = 'holidah.mwangi@student.moringaschool.com'
 
     }
   tools { 
