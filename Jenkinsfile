@@ -76,7 +76,6 @@ pipeline {
       }
     }
     post {
-         post {
     success {
       emailext(
         attachLog: true, 
@@ -105,7 +104,7 @@ pipeline {
         }
          }
     }       
-}
+
 
 
 
