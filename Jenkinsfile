@@ -103,10 +103,11 @@ pipeline {
         to: 'holidahmwangi@gmail.com'
 
         }
-         
-} 
+      }
+    }       
 }
-}
+
+
 
      
 
