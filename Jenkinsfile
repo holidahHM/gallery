@@ -1,53 +1,4 @@
 // pipeline { 
-//   agent any
-//   tools { 
-//     gradle "Gradle-6"
-//   }
-//   environment {
-//     GIT_AUTHOR_NAME = 'holidahHM'
-//     GIT_AUTHOR_EMAIL = 'holidahmwangi@gmail.com"'
-//     GIT_COMMITTER_NAME = 'holidahHM'
-//     GIT_COMMITTER_EMAIL = 'holidahmwangi@gmail.com"'
-//   }
-//   stages { 
-//     stage('Clone Repository') {
-//       steps { 
-//         git 'https://github.com/holidahHM/gallery.git'
-//       }
-//     }
-//     stage('Set Git Config') {
-//       steps {
-//         sh 'git config --global user.email "holidahmwangi@gmail.com"'
-//         sh 'git config --global user.name "holidahHM"'
-//       }
-//     }
-//     stage('Build Project') {
-//       steps { 
-//         sh 'gradle build --stacktrace --info'
-//       }
-//     }
-//     stage('Run Tests') {
-//       steps {
-//         sh 'gradle test --stacktrace --info'
-//       }
-//     }
-//   stage('Deploy to Heroku') {
-//      stage('Deploy to Heroku') {
-//       steps {
-//         withCredentials([string(credentialsId: 'heroku-api-key', variable: 'HEROKU_API_KEY')]) {
-//           sh '''
-//           if git remote | grep heroku; then
-//             git remote remove heroku
-//           fi
-//           git remote add heroku https://heroku:${HEROKU_API_KEY}@git.heroku.com/gentle-forest-31701.git
-//           git push heroku master
-//           '''
-//         }
-//       }
-//     } 
-//   }
-// }
-
 pipeline {
   agent any
   tools { 
@@ -69,6 +20,7 @@ pipeline {
       steps {
         sh 'npm install mocha'
         sh 'npm test'
+        sh 'gradle test'
       }
     }
     stage('Deploy to Heroku') {
@@ -123,6 +75,36 @@ pipeline {
         }
       }
     }
+    post {
+        success {
+            emailext attachLog: true, 
+                body:
+                    """
+                    <p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p>
+                    <p>
+                    View console output at 
+                    "<a href="${env.BUILD_URL}">${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"
+                    </p> 
+                      <p><i>(Build log is attached.)</i></p>
+                    """,
+                subject: "Status: 'SUCCESS' -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", 
+                to: 'holidahmwangi@gmail.com'
+        }
+        failure {
+            emailext attachLog: true, 
+                body:
+                    """
+                    <p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p>
+                    <p>
+                    View console output at 
+                    "<a href="${env.BUILD_URL}">${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"
+                    </p> 
+                      <p><i>(Build log is attached.)</i></p>
+                    """,
+                subject: "Status: FAILURE -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'", 
+                to: 'holidahmwangi@gmail.com'
+        }
 } 
+}
      
 
