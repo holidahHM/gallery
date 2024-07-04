@@ -61,6 +61,15 @@ let image = require('./routes/image');
 const express = require('express');
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
 // connecting the database
 
 const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI[app.settings.env]
@@ -92,11 +101,6 @@ app.use(express.json());
 // Use routes
 app.use('/', index);
 app.use('/image', image);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
 
 
 module.exports = app;
